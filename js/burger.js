@@ -14,18 +14,27 @@ window.addEventListener('scroll', () => {
 
 const header = document.querySelector('.header');
 const headerReplace = document.querySelector('.header__replace');
+const icon = document.querySelectorAll('.fas');
+
 let startPosition = 0;
 let scrolled;
 window.addEventListener('scroll', function () {
-  scrolled = this.pageYOffset;
-  if (scrolled > 150 && scrolled > startPosition) {
+  scrolled = this.scrollY;
+  if (scrolled > 150) {
     // header.classList.add('out');
     header.classList.add('move');
     headerReplace.classList.remove('hidden');
+
+    icon.forEach(icon => {
+      icon.classList.add('fas-color');
+    })
   } else {
     // header.classList.remove('out');
-    // header.classList.remove('move');
-    // headerReplace.classList.add('hidden');
+    header.classList.remove('move');
+    headerReplace.classList.add('hidden');
+    icon.forEach(icon => {
+      icon.classList.remove('fas-color');
+    })
   }
   startPosition = scrolled;
 })
